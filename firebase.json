@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "react-notes-001",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
