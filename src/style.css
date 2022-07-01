@@ -1,0 +1,140 @@
+:root {
+  --tea-green: #d0efb1ff;
+  --granny-smith-apple: #b3d89cff;
+  --opal: #9dc3c2ff;
+  --pewter-blue: #77a6b6ff;
+  --queen-blue: #4d7298ff;
+}
+
+body {
+  background-color: var(--tea-green);
+  color: #000000;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 2rem);
+}
+
+.app-title {
+  display: flex;
+  margin-left: -7px;
+  margin-right: -7px;
+  margin-block-start: 0em;
+  margin-block-end: 0.5em;
+  padding: 0.5rem 0.5rem 0.75rem 0.5rem;
+  border-bottom: 1px solid white;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.app-title-icon {
+  margin: 5px 0.5rem;
+  font-size: 2rem;
+}
+
+.note-search {
+  margin: 0 1rem;
+  display: flex;
+  min-height: 2rem;
+  min-width: 200px;
+}
+
+.note-search input {
+  height: auto;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+}
+
+.note-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.note-item,
+.note-form {
+  background-color: var(--granny-smith-apple);
+  border-radius: 5px;
+  padding: 0.75rem;
+}
+
+.note-form {
+  background-color: var(--opal);
+  border-radius: 5px;
+  padding: 0.75rem;
+}
+
+.note-item-title {
+  font-weight: bold;
+}
+
+.note-item-text {
+  min-height: 100px;
+}
+
+.note-form textarea {
+  min-height: 90px;
+  resize: none;
+}
+
+.note-form input:focus,
+.note-form textarea:focus {
+  outline: none;
+}
+
+.note-form input,
+.note-form textarea {
+  width: 100%;
+  font-size: 14px;
+  border: 1px solid transparent;
+  background-color: var(--opal);
+}
+
+.note-item-footer,
+.note-form-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  font-size: 16px;
+}
+
+.app-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  min-height: calc(100vh - 100px);
+}
+
+.app-navigation-items {
+  margin-left: -7px;
+}
+
+.app-navigation-item {
+  padding: 1rem 0.75rem;
+  margin-bottom: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.app-navigation-icon {
+  font-size: large;
+  margin-bottom: -3px;
+}
+
+.app-navigation-item.selected {
+  background: var(--pewter-blue);
+  color: white;
+}
+
+.app-navigation-content {
+  flex-basis: calc(100% - 140px);
+  padding: 0 0.5rem 0 1rem;
+}
