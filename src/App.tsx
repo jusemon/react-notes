@@ -18,29 +18,7 @@ export default function App() {
   const [notes, setNotes] = React.useState<Array<Note>>(
     notesLS
       ? JSON.parse(notesLS)
-      : [
-          {
-            id: nanoid(),
-            title: 'Note 1',
-            text: 'Note 1 content',
-            createdAt: new Date(),
-            deleted: false,
-          },
-          {
-            id: nanoid(),
-            title: 'Note 2',
-            text: 'Note 2 content',
-            createdAt: new Date(),
-            deleted: false,
-          },
-          {
-            id: nanoid(),
-            title: 'Note 3',
-            text: 'Note 3 content',
-            createdAt: new Date(),
-            deleted: false,
-          },
-        ]
+      : []
   );
 
   React.useEffect(() => {
