@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# React Notes App
 
-## https://react-notes.jusemon.com/
+A simple notes application, it has a create, read, update and delete notes, along with a trash bin and localStorage for local persistence.
+
+A running version of the project could be found here: [Live Link](https://react-notes.jusemon.com/)
+
+A stackblitz version could be found here: [Stackblitz Link](https://stackblitz.com/edit/jusemon-react-notes)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
