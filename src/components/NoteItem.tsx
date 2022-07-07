@@ -9,10 +9,9 @@ export interface NoteItemProp {
   title: string;
   text: string;
   deleted: boolean;
-
-  toggleModeHandler: () => void;
   deleteHandler: () => void;
   recoverHandler?: () => void;
+  toggleModeHandler?: () => void;
 }
 
 export default function NoteItem({
@@ -28,10 +27,10 @@ export default function NoteItem({
       <div className="note-item-title">{title}</div>
       <div className="note-item-text">{text}</div>
       <div className="note-item-footer">
-        {deleted && recoverHandler ? (
-          <RiFileUploadFill color="green" onClick={() => recoverHandler()} />
+        {deleted ? (
+          <RiFileUploadFill color="green" onClick={() => recoverHandler && recoverHandler()} />
         ) : (
-          <RiFileEditFill color="blue" onClick={() => toggleModeHandler()} />
+          <RiFileEditFill color="blue" onClick={() => toggleModeHandler && toggleModeHandler()} />
         )}
         <RiDeleteBinFill color="red" onClick={() => deleteHandler()} />
       </div>
