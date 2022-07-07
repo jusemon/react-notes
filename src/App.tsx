@@ -6,19 +6,24 @@ import {
   RiStickyNoteLine,
   RiDeleteBinLine,
 } from 'react-icons/ri';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import './style.css';
 import NoteList, { Note } from './components/NoteList';
 import { NoteFormData } from './components/NoteForm';
 import NoteSearch from './components/NoteSearch';
+import NoteBin from './components/NoteBin';
 
 export default function App() {
-  const notesLS = localStorage.getItem('notes');
-  const [inTrashBin, setInTrashBin] = React.useState(false);
   const [searchText, setSearchText] = React.useState('');
-  const [notes, setNotes] = React.useState<Array<Note>>(
-    notesLS
-      ? JSON.parse(notesLS)
-      : []
+  const [notes, setNotes] = React.useState<Array<Note>>(() => {
+    const notesLS = localStorage.getItem('notes');
+    return notesLS ? JSON.parse(notesLS) : [];
+  });
+
+  const filteredNotes = notes.filter(
+    (n) =>
+      n.title.toLowerCase().includes(searchText.toLowerCase().trim()) ||
+      n.text.toLowerCase().includes(searchText.toLowerCase().trim())
   );
 
   React.useEffect(() => {
@@ -81,6 +86,9 @@ export default function App() {
     }
   };
 
+  const isNavigationActiveClass = ({ isActive }: { isActive: boolean }) =>
+    `app-navigation-item ${isActive && 'selected'}`;
+
   return (
     <div className="app">
       <h1 className="app-title">
@@ -90,36 +98,38 @@ export default function App() {
       </h1>
       <div className="app-navigation">
         <div className="app-navigation-items">
-          <div
-            className={`app-navigation-item ${!inTrashBin ? 'selected' : ''}`}
-            onClick={() => setInTrashBin(false)}
-          >
+          <NavLink className={isNavigationActiveClass} to="/">
             <RiStickyNoteLine className="app-navigation-icon" /> Notes
-          </div>
-          <div
-            className={`app-navigation-item ${inTrashBin ? 'selected' : ''}`}
-            onClick={() => setInTrashBin(true)}
-          >
+          </NavLink>
+          <NavLink className={isNavigationActiveClass} to="/trashbin">
             <RiDeleteBinLine className="app-navigation-icon" /> Trash bin
-          </div>
+          </NavLink>
         </div>
         <div className="app-navigation-content">
-          <NoteList
-            inTrashBin={inTrashBin}
-            notes={notes
-              .filter((n) => (inTrashBin ? n.deleted : !n.deleted))
-              .filter(
-                (n) =>
-                  n.title
-                    .toLowerCase()
-                    .includes(searchText.toLowerCase().trim()) ||
-                  n.text.toLowerCase().includes(searchText.toLowerCase().trim())
-              )}
-            createNoteHandler={createNoteHandler}
-            updateNoteHandler={updateNoteHandler}
-            deleteNoteHandler={deleteNoteHandler}
-            recoverNoteHandler={recoverNoteHandler}
-          />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <NoteList
+                  notes={filteredNotes.filter((n) => !n.deleted)}
+                  createNoteHandler={createNoteHandler}
+                  updateNoteHandler={updateNoteHandler}
+                  deleteNoteHandler={deleteNoteHandler}
+                  recoverNoteHandler={recoverNoteHandler}
+                />
+              }
+            />
+            <Route
+              path="/trashbin"
+              element={
+                <NoteBin
+                  notes={filteredNotes.filter((n) => n.deleted)}
+                  deleteNoteHandler={deleteNoteHandler}
+                  recoverNoteHandler={recoverNoteHandler}
+                />
+              }
+            />
+          </Routes>
         </div>
       </div>
     </div>

@@ -2,6 +2,10 @@ import * as React from 'react';
 import NoteForm from './NoteForm';
 import NoteItem from './NoteItem';
 
+export interface Dictionary<T> {
+  [key: string]: T;
+}
+
 export interface Note {
   id: string;
   title: string;
@@ -12,7 +16,6 @@ export interface Note {
 
 export interface NoteListProp {
   notes: ReadonlyArray<Note>;
-  inTrashBin: boolean;
   createNoteHandler: (data: { title: string; text: string }) => void;
   updateNoteHandler: (
     id: string,
@@ -24,13 +27,12 @@ export interface NoteListProp {
 
 export default function NoteList({
   notes,
-  inTrashBin,
   createNoteHandler,
   updateNoteHandler,
   deleteNoteHandler,
   recoverNoteHandler,
 }: NoteListProp) {
-  const [inEditMode, setInEditMode] = React.useState<{[key: string]: boolean}>(
+  const [inEditMode, setInEditMode] = React.useState<Dictionary<boolean>>(
     notes.reduce((dict, note) => ({ ...dict, [note.id]: false }), {})
   );
 
@@ -63,9 +65,7 @@ export default function NoteList({
           />
         )
       )}
-      {inTrashBin || (
-        <NoteForm isUpdate={false} createHandler={createNoteHandler} />
-      )}
+      <NoteForm isUpdate={false} createHandler={createNoteHandler} />
     </div>
   );
 }
