@@ -1,13 +1,6 @@
 import * as React from 'react';
 import NoteItem from './NoteItem';
-
-export interface Note {
-  id: string;
-  title: string;
-  text: string;
-  createdAt: Date;
-  deleted: boolean;
-}
+import { Note } from './NoteList';
 
 export interface NoteBinProp {
   notes: ReadonlyArray<Note>;

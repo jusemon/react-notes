@@ -2,6 +2,10 @@ import * as React from 'react';
 import NoteForm from './NoteForm';
 import NoteItem from './NoteItem';
 
+export interface Dictionary<T> {
+  [key: string]: T;
+}
+
 export interface Note {
   id: string;
   title: string;
@@ -28,9 +32,9 @@ export default function NoteList({
   deleteNoteHandler,
   recoverNoteHandler,
 }: NoteListProp) {
-  const [inEditMode, setInEditMode] = React.useState<{
-    [key: string]: boolean;
-  }>(notes.reduce((dict, note) => ({ ...dict, [note.id]: false }), {}));
+  const [inEditMode, setInEditMode] = React.useState<Dictionary<boolean>>(
+    notes.reduce((dict, note) => ({ ...dict, [note.id]: false }), {})
+  );
 
   const toggleModeHandler = (id: string) => {
     setInEditMode({ ...inEditMode, [id]: !inEditMode[id] });
