@@ -17,16 +17,13 @@ export default function App() {
   const [searchText, setSearchText] = React.useState('');
   const [notes, setNotes] = React.useState<Array<Note>>(() => {
     const notesLS = localStorage.getItem('notes');
-    return notesLS
-      ? JSON.parse(notesLS)
-      : []
+    return notesLS ? JSON.parse(notesLS) : [];
   });
 
-  const filteredNotes = notes.filter((n) =>
-    n.title
-      .toLowerCase()
-      .includes(searchText.toLowerCase().trim()) ||
-    n.text.toLowerCase().includes(searchText.toLowerCase().trim())
+  const filteredNotes = notes.filter(
+    (n) =>
+      n.title.toLowerCase().includes(searchText.toLowerCase().trim()) ||
+      n.text.toLowerCase().includes(searchText.toLowerCase().trim())
   );
 
   React.useEffect(() => {

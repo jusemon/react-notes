@@ -28,9 +28,15 @@ export default function NoteItem({
       <div className="note-item-text">{text}</div>
       <div className="note-item-footer">
         {deleted ? (
-          <RiFileUploadFill color="green" onClick={() => recoverHandler && recoverHandler()} />
+          <RiFileUploadFill
+            color="green"
+            onClick={() => recoverHandler && recoverHandler()}
+          />
         ) : (
-          <RiFileEditFill color="blue" onClick={() => toggleModeHandler && toggleModeHandler()} />
+          <RiFileEditFill
+            color="blue"
+            onClick={() => toggleModeHandler && toggleModeHandler()}
+          />
         )}
         <RiDeleteBinFill color="red" onClick={() => deleteHandler()} />
       </div>

@@ -22,7 +22,7 @@ export default function NoteList({
 }: NoteBinProp) {
   return (
     <div className="note-list">
-      {notes.map((note) =>
+      {notes.map((note) => (
         <NoteItem
           key={note.id}
           title={note.title}
@@ -31,7 +31,7 @@ export default function NoteList({
           recoverHandler={() => recoverNoteHandler(note.id)}
           deleteHandler={() => deleteNoteHandler(note.id)}
         />
-      )}
+      ))}
     </div>
   );
 }

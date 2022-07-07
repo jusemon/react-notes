@@ -28,9 +28,9 @@ export default function NoteList({
   deleteNoteHandler,
   recoverNoteHandler,
 }: NoteListProp) {
-  const [inEditMode, setInEditMode] = React.useState<{ [key: string]: boolean }>(
-    notes.reduce((dict, note) => ({ ...dict, [note.id]: false }), {})
-  );
+  const [inEditMode, setInEditMode] = React.useState<{
+    [key: string]: boolean;
+  }>(notes.reduce((dict, note) => ({ ...dict, [note.id]: false }), {}));
 
   const toggleModeHandler = (id: string) => {
     setInEditMode({ ...inEditMode, [id]: !inEditMode[id] });
