@@ -76,6 +76,8 @@ body {
 
 .note-item-text {
   min-height: 100px;
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .note-form textarea {
@@ -90,7 +92,7 @@ body {
 
 .note-form input,
 .note-form textarea {
-  width: 100%;
+  width: calc(100% - 5px);
   font-size: 14px;
   border: 1px solid transparent;
   background-color: var(--opal);
